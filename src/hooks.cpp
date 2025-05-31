@@ -24,13 +24,13 @@ class $modify(GameObjectHook, GameObject) {
         }
     }
 
-    void triggerObject(GJBaseGameLayer* gl, int p1, std::vector<int> const* p2) {
-        if (auto mg = GameObjectFactory::get()->fetch(this)) {
-            mg.value()->onTrigger(gl);
-        } else {
-            GameObject::triggerObject(gl, p1, p2);
-        }
-    }
+    // void triggerObject(GJBaseGameLayer* gl, int p1, std::vector<int> const* p2) {
+    //     if (auto mg = GameObjectFactory::get()->fetch(this)) {
+    //         mg.value()->onTrigger(gl);
+    //     } else {
+    //         GameObject::triggerObject(gl, p1, p2);
+    //     }
+    // }
 
     void resetObject() {
         if (auto mg = GameObjectFactory::get()->fetch(this)) {

@@ -56,12 +56,12 @@ public:
         auto frame = cache->spriteFrameByName(fname.c_str());
 
         m_fields->m_object->setDisplayFrame(frame);
-        m_fields->m_object->m_objectSize = CCSizeMake(
+        m_fields->m_object->m_lastSize = CCSizeMake( // m_objectSize
             frame->getRect().size.width,
             frame->getRect().size.height
         );
 
-        m_fields->m_object->m_textureName = fname;
+        m_fields->m_object->m_particleString = fname;
     }
 
     // Set custom texture
@@ -73,7 +73,7 @@ public:
             texture->getContentSize().width,
             texture->getContentSize().height
         ));
-        m_fields->m_object->m_objectSize = CCSizeMake(
+        m_fields->m_object->m_lastSize = CCSizeMake( // m_objectSize
             texture->getContentSize().width,
             texture->getContentSize().height
         );
