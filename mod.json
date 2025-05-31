@@ -1,9 +1,14 @@
 {
-	"geode": "v1.0.0-beta.17",
+	"geode": "4.5.0",
+	"gd": {
+		"android": "2.2074",
+		"ios": "2.2074",
+		"win": "2.2074",
+		"mac": "2.2074"
+	},
 	"version": "v1.0.0",
 	"id": "com.camila.objectapi",
 	"name": "Custom Objects",
-	"developer": "camila",
-	"description": "library for custom objects api",
-	"binary": "CustomObjects"
+	"developers": ["camila314", "OmgRod"],
+	"description": "library for custom objects api"
 }
