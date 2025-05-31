@@ -10,5 +10,10 @@
 	"id": "com.camila.objectapi",
 	"name": "Custom Objects",
 	"developers": ["camila314", "OmgRod"],
-	"description": "library for custom objects api"
+	"description": "library for custom objects api",
+	"api": {
+		"include": [
+			"include/*.hpp"
+		]
+	}
 }

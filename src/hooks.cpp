@@ -24,11 +24,11 @@ class $modify(GameObjectHook, GameObject) {
         }
     }
 
-    void triggerObject(GJBaseGameLayer* gl) {
+    void triggerObject(GJBaseGameLayer* gl, int p1, std::vector<int> const* p2) {
         if (auto mg = GameObjectFactory::get()->fetch(this)) {
             mg.value()->onTrigger(gl);
         } else {
-            GameObject::triggerObject(gl);
+            GameObject::triggerObject(gl, p1, p2);
         }
     }
 
@@ -40,8 +40,8 @@ class $modify(GameObjectHook, GameObject) {
         GameObject::resetObject();
     }
 
-    gd::string getSaveString() {
-        std::string dat(GameObject::getSaveString());
+    gd::string getSaveString(GJBaseGameLayer* gl) {
+        std::string dat(GameObject::getSaveString(gl));
 
         if (auto mg = GameObjectFactory::get()->fetch(this)) {
             for (auto[k, v]: mg.value()->onExport()) {
@@ -53,7 +53,7 @@ class $modify(GameObjectHook, GameObject) {
     }
 
     static GameObject* objectFromString(gd::string a, bool b) {
-        auto object = GameObject::objectFromString(a, b);
+        auto object = objectFromString(a, b);
         if (!object) return object;
 
         if (auto mg = GameObjectFactory::get()->fetch(object)) {
@@ -82,13 +82,13 @@ class $modify(GameObjectHook, GameObject) {
         return object;
     }
 
-    void addGlow() {
+    void addGlow(gd::string p0) {
         if (auto mg = GameObjectFactory::get()->fetch(this)) {
             if (!mg.value()->isGlowEnabled())
                 return;
         }
 
-        GameObject::addGlow();
+        GameObject::addGlow(p0);
     }
 
     void customSetup() {
@@ -100,11 +100,11 @@ class $modify(GameObjectHook, GameObject) {
 };
 
 class $modify(PlayerObject) {
-    void collidedWithObject(float dt, GameObject* obj, CCRect r) {
+    void collidedWithObject(float dt, GameObject* obj, CCRect r, bool p3) {
         if (auto mg = GameObjectFactory::get()->fetch(obj)) {
             mg.value()->onCollide(dt, this);
         } else {
-            PlayerObject::collidedWithObject(dt, obj, r);
+            PlayerObject::collidedWithObject(dt, obj, r, p3);
         }
     }
 };
@@ -114,7 +114,7 @@ class $modify(GJBaseGameLayer) {
 		CCDictionaryExt <int, CCNode> m_effectLayerMap;
 	};
 
-    CCNode* parentForZLayer(int zLayer, bool detailChannel, int batchLayer) {
+    CCNode* parentForZLayer(int zLayer, bool detailChannel, int batchLayer, int p3) {
         auto elm = m_fields->m_effectLayerMap;
 
         if (batchLayer == -2) { // -2 is the effect layer
@@ -137,13 +137,13 @@ class $modify(GJBaseGameLayer) {
             }
             return elm[zLayer];
         } else {
-            return GJBaseGameLayer::parentForZLayer(zLayer, detailChannel, batchLayer);
+            return GJBaseGameLayer::parentForZLayer(zLayer, detailChannel, batchLayer, p3);
         }
     }
 };
 
 class $modify(CCSprite) {
-    void setDisplayFrame(cocos2d::CCSpriteFrame* f) {
+    void setDisplayFrame(CCSpriteFrame* f) {
         if (f == nullptr) {
             return;
         }

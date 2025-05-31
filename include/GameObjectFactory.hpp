@@ -3,6 +3,8 @@
 #include <Geode/Geode.hpp>
 #include "GameObjectController.hpp"
 
+using namespace geode::prelude;
+
 class GameObjectFactory {
     protected: using container_t = GameObjectController*; // might change the name
     using generator_t = std:: function < container_t(GameObject*) > ;

@@ -2,6 +2,8 @@
 
 #include <Geode/Geode.hpp>
 
+using namespace geode::prelude;
+
 class GameObjectController {
 public:
     struct Fields {
@@ -50,11 +52,11 @@ public:
     inline void overrideSpriteFrame(std::string const& fname) {
         m_fields->m_object->m_parentMode = -2;
 
-        auto cache = cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache();
+        auto cache = CCSpriteFrameCache::sharedSpriteFrameCache();
         auto frame = cache->spriteFrameByName(fname.c_str());
 
         m_fields->m_object->setDisplayFrame(frame);
-        m_fields->m_object->m_objectSize = cocos2d::CCSizeMake(
+        m_fields->m_object->m_objectSize = CCSizeMake(
             frame->getRect().size.width,
             frame->getRect().size.height
         );
@@ -63,20 +65,18 @@ public:
     }
 
     // Set custom texture
-    inline void overrideTexture(cocos2d::CCTexture2D* texture) {
+    inline void overrideTexture(CCTexture2D* texture) {
         m_fields->m_object->m_parentMode = -2;
         m_fields->m_object->setTexture(texture);
-        m_fields->m_object->setTextureRect(cocos2d::CCRectMake(
+        m_fields->m_object->setTextureRect(CCRectMake(
             0, 0,
             texture->getContentSize().width,
             texture->getContentSize().height
         ));
-        m_fields->m_object->m_objectSize = cocos2d::CCSizeMake(
+        m_fields->m_object->m_objectSize = CCSizeMake(
             texture->getContentSize().width,
             texture->getContentSize().height
         );
     }
-
-private:
-    std::unique_ptr<Fields> m_fields;
+	std::unique_ptr<Fields> m_fields;
 };
