@@ -21,7 +21,7 @@ class TestObject: public GameObjectController {
         overrideSpriteFrame("GJ_arrow_01_001.png");
 
         // Touch-triggered object with the Modifier type. This object will run onTrigger when collided with
-        m_fields->m_object->m_touchTriggered = true;
+        // m_fields->m_object->m_touchTriggered = true;
         m_fields->m_object->m_objectType = GameObjectType::Modifier;
     }
 };
