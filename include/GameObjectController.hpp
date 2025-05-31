@@ -29,7 +29,7 @@ public:
 
     // This happens when the player collides with the object
     inline virtual void onCollide(float dt, PlayerObject* pl) {
-        pl->collidedWithObject(dt, m_fields->m_object);
+        pl->collidedWithObject(dt, m_fields->m_object, {}, false);
     }
 
     // All setup goes here
