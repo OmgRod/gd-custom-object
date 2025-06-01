@@ -6,7 +6,7 @@
 		"win": "2.2074",
 		"mac": "2.2074"
 	},
-	"version": "v1.0.0",
+	"version": "v1.0.0-prerelease.1",
 	"id": "com.camila.objectapi",
 	"name": "Custom Objects",
 	"developers": ["camila314", "OmgRod"],
